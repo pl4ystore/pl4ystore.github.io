@@ -1,29 +1,16 @@
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>js-dos api</title>
-    <style type="text/css">
-      .dosbox-container { width: 640px; height: 400px; }
-      .dosbox-container > .dosbox-overlay { background: url(https://js-dos.com/cdn/digger.png); }
-    </style>
-  </head>
-  <body>
-    <div id="dosbox"></div>
-    <br/>
-    <button onclick="dosbox.requestFullScreen();">Make fullscreen</button>
-    
-    <script type="text/javascript" src="https://js-dos.com/cdn/js-dos-api.js"></script>
-    <script type="text/javascript">
-      var dosbox = new Dosbox({
-        id: "dosbox",
-        onload: function (dosbox) {
-          dosbox.run("https://js-dos.com/cdn/gta.zip", "./GTA.COM");
-        },
-        onrun: function (dosbox, app) {
-          console.log("App '" + app + "' is runned");
+<iframe
+    width="680"
+    height="400"
+    frameborder="0"
+    src="https://dos.zone/player/?bundleUrl=https%3A%2F%2Fcdn.dos.zone%2Fcustom%2Fdos%2Fgta-mobile.jsdos?anonymous=1"
+    allowfullscreen>
+</iframe>           
+<!--
+  Message 'dz-player-exit' will be fired when js-dos is exited:
+  
+    window.addEventListener("message", (e) => {
+        if (e.data.message === "dz-player-exit") {
+            // ...
         }
-      });
-    </script>
-  </body>
-</html>
+    });
+-->
