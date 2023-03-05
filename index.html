@@ -1,50 +1,29 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport"
-              content="width=device-width">
-
-        <meta http-equiv="content-type"
-              content="text/html; charset=UTF-8">
-              
-        <link rel="stylesheet"
-              type="text/css"
-              href="index.css">
-
-        <title>DOSBox</title>
-
-        <script src="./js-dos/js-dos.js"></script>
-    </head>
-    <body>
-        <div id="message-display" class="loading">
-            Loading DOS...
-        </div>
-
-        <main id="dosbox">
-            <canvas id="jsdos-canvas" oncontextmenu="return false;"></canvas>
-        </main>
-
-        <script type="module">
-            import content from "./content-ths.js";
-            import {start_dosbox} from "./dosbox.js";
-
-            const targetContentKey = (window.location.hash || "#").substr(1);
-            let targetContent = undefined;
-
-            const contentKeys = Object.keys(content);
-            for (let i = 0; i < contentKeys.length; i++)
-            {
-                const contentKey = contentKeys[i];
-
-                if ((new RegExp(contentKey, "i")).test(targetContentKey))
-                {
-                    targetContent = Object.values(content)[i];
-                    break;
-                }
-            }
-
-            start_dosbox(targetContent || content[undefined]);
-        </script>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>js-dos api</title>
+    <style type="text/css">
+      .dosbox-container { width: 640px; height: 400px; }
+      .dosbox-container > .dosbox-overlay { background: url(https://js-dos.com/cdn/digger.png); }
+    </style>
+  </head>
+  <body>
+    <div id="dosbox"></div>
+    <br/>
+    <button onclick="dosbox.requestFullScreen();">Make fullscreen</button>
     
-    </body>
+    <script type="text/javascript" src="https://js-dos.com/cdn/js-dos-api.js"></script>
+    <script type="text/javascript">
+      var dosbox = new Dosbox({
+        id: "dosbox",
+        onload: function (dosbox) {
+          dosbox.run("https://js-dos.com/cdn/digger.zip", "./DIGGER.COM");
+        },
+        onrun: function (dosbox, app) {
+          console.log("App '" + app + "' is runned");
+        }
+      });
+    </script>
+  </body>
 </html>
